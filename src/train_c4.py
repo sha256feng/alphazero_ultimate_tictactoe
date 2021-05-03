@@ -65,7 +65,8 @@ def train(net, dataset, optimizer, scheduler, start_epoch, cpu, args, iteration)
     criterion = AlphaLoss()
     
     train_set = board_data(dataset)
-    train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, num_workers=0, pin_memory=False)
+    train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True,
+                              num_workers=0, pin_memory=False)
     losses_per_epoch = load_results(iteration + 1)
     
     logger.info("Starting training process...")
