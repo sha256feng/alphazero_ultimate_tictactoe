@@ -9,7 +9,7 @@ from connect_board import board as c_board
 import copy
 import torch
 import torch.multiprocessing as mp
-from alpha_net_c4 import ConnectNet
+from alpha_net_uttt import ConnectNet
 import datetime
 import logging
 from tqdm import tqdm
@@ -38,9 +38,9 @@ class UCTNode():
         self.is_expanded = False
         self.parent = parent  
         self.children = {}
-        self.child_priors = np.zeros([7], dtype=np.float32)
-        self.child_total_value = np.zeros([7], dtype=np.float32)
-        self.child_number_visits = np.zeros([7], dtype=np.float32)
+        self.child_priors = np.zeros([81], dtype=np.float32)
+        self.child_total_value = np.zeros([81], dtype=np.float32)
+        self.child_number_visits = np.zeros([81], dtype=np.float32)
         self.action_idxes = []
         
     @property
