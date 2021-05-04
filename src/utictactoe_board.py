@@ -13,6 +13,10 @@ class board():
         self.mega_board[self.mega_board == "0.0"] = " "
 
     def drop_piece(self, xy):
+        """
+        Place a bead at position xy.
+        :param xy: tuple or list, length 2
+        """
         if self.current_board[xy[0], xy[1]] != " ":
             return "Invalid move"
         else:
@@ -61,9 +65,11 @@ class board():
                     self.mega_board[i,j] = "O"
                 elif winner == "X":
                     self.mega_board[i,j] = "X"
-                elif winner == "tie":
-                    self.mega_board[i,j] = "-"
-        
+                #elif winner == "tie":
+                #    self.mega_board[i,j] = "-"
+                else:
+                    continue
+
         winner = _check_ninebox(self.mega_board)
         if winner == "O" or "X":
             return True
@@ -90,5 +96,5 @@ class board():
                 if self.current_board[i,j] == ' ':
                     acts.append((i,j))
         if len(acts) == 0:
-            acts = whole_blank_cell(self)
+            acts = _whole_blank_cell(self)
         return acts

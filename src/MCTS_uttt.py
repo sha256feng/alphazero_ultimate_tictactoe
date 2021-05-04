@@ -4,8 +4,8 @@ import os
 import collections
 import numpy as np
 import math
-import encoder_decoder_c4 as ed
-from connect_board import board as c_board
+import encoder_decoder_uttt as ed
+from utictactoe_board import board as c_board
 import copy
 import torch
 import torch.multiprocessing as mp
