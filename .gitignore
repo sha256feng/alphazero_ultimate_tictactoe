@@ -2,3 +2,4 @@ cc4_*.pth.tar
 src/datasets/**
 src/evaluator_data/**
 *.pkl
+src/__pycache__/**
