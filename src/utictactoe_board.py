@@ -22,9 +22,11 @@ class board():
         else:
             if self.player == 0:
                 self.current_board[xy[0], xy[1]] = "O"
+                self.old_move = xy
                 self.player = 1
             elif self.player == 1:
                 self.current_board[xy[0], xy[1]] = "X"
+                self.old_move = xy
                 self.player = 0
 
     def check_winner(self):
