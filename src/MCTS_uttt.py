@@ -176,6 +176,7 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             board_state = copy.deepcopy(ed.encode_board(current_board))
             root = UCT_search(current_board,777,connectnet,t) # 777 is very arbitrary
             policy = get_policy(root, t)
+            print("Policy shape is ", policy.shape)
             print("[CPU: %d]: Game %d POLICY:\n " % (cpu, idxx), policy)
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.array([0,1,2,3,4,5,6]), \
