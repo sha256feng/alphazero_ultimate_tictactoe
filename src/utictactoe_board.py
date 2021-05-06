@@ -71,7 +71,7 @@ class board():
                     continue
 
         winner = _check_ninebox(self.mega_board)
-        if winner == "O" or "X":
+        if winner == "O" or winner == "X":
             return True
         elif winner == "tie":
             return winner
