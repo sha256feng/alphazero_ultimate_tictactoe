@@ -97,7 +97,6 @@ class UCTNode():
         else:
             for i,j in action_idxs:
                 self.action_idxes.append(i*9+j)
-        print(self.action_idxes)
         #self.action_idxes = action_idxs
         #for i in range(9):
         #    for j in range(9):
@@ -109,6 +108,7 @@ class UCTNode():
         self.child_priors = c_p
     
     def decode_n_move_pieces(self,board,move):
+        move = (move//9, move%9)
         board.drop_piece(move)
         return board
             
@@ -162,8 +162,6 @@ def get_policy(root, temp=1):
     #policy = np.zeros([7], dtype=np.float32)
     #for idx in np.where(root.child_number_visits!=0)[0]:
     #    policy[idx] = ((root.child_number_visits[idx])**(1/temp))/sum(root.child_number_visits**(1/temp))
-    print("Check child number visits")
-    print(sum(root.child_number_visits))
     return ((root.child_number_visits)**(1/temp))/sum(root.child_number_visits**(1/temp))
 
 def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
@@ -195,7 +193,6 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             board_state = copy.deepcopy(ed.encode_board(current_board))
             root = UCT_search(current_board,777,connectnet,t) # 777 is very arbitrary
             policy = get_policy(root, t)
-            print("Policy shape is ", policy.shape)
             print("[CPU: %d]: Game %d POLICY:\n " % (cpu, idxx), policy)
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(action_ls, \
