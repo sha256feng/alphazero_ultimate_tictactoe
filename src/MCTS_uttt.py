@@ -149,6 +149,8 @@ def get_policy(root, temp=1):
     #policy = np.zeros([7], dtype=np.float32)
     #for idx in np.where(root.child_number_visits!=0)[0]:
     #    policy[idx] = ((root.child_number_visits[idx])**(1/temp))/sum(root.child_number_visits**(1/temp))
+    print("Check child number visits")
+    print(sum(root.child_number_visits))
     return ((root.child_number_visits)**(1/temp))/sum(root.child_number_visits**(1/temp))
 
 def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
