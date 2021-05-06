@@ -97,14 +97,15 @@ class UCTNode():
         else:
             for i,j in action_idxs:
                 self.action_idxes.append(i*9+j)
+        print(self.action_idxes)
         #self.action_idxes = action_idxs
         #for i in range(9):
         #    for j in range(9):
         #        if (i,j) not in action_idxs:
         #            c_p[i,j] = 0.00000
-        c_p[[i for i in range(len(child_priors)) if i not in self.action_idxs]] = 0.000000000 # mask all illegal actions
+        c_p[[i for i in range(len(child_priors)) if i not in self.action_idxes]] = 0.000000000 # mask all illegal actions
         if self.parent.parent == None: # add dirichlet noise to child_priors in root node
-            c_p = self.add_dirichlet_noise(self.action_idxs,c_p)
+            c_p = self.add_dirichlet_noise(self.action_idxes,c_p)
         self.child_priors = c_p
     
     def decode_n_move_pieces(self,board,move):
