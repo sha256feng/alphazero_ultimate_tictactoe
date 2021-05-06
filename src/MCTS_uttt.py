@@ -155,6 +155,7 @@ def UCT_search(game_state, num_reads,net,temp):
     return root
 
 def do_decode_n_move_pieces(board,move):
+    move = (move//9, move%9)
     board.drop_piece(move)
     return board
 
@@ -172,10 +173,10 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             os.mkdir("datasets")
         os.mkdir("datasets/iter_%d" % iteration)
 
-    action_ls = []
-    for i in range(9):
-        for j in range(9):
-            action_ls.append((i,j))
+    #action_ls = []
+    #for i in range(9):
+    #    for j in range(9):
+    #        action_ls.append((i,j))
     for idxx in tqdm(range(start_idx, num_games + start_idx)):
         logger.info("[CPU: %d]: Game %d" % (cpu, idxx))
         current_board = c_board()
@@ -195,7 +196,7 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             policy = get_policy(root, t)
             print("[CPU: %d]: Game %d POLICY:\n " % (cpu, idxx), policy)
             current_board = do_decode_n_move_pieces(current_board,\
-                                                    np.random.choice(action_ls, \
+                                                    np.random.choice(np.arange(81), \
                                                     p = policy)) # decode move and move piece(s)
             dataset.append([board_state,policy])
             print("[Iteration: %d CPU: %d]: Game %d CURRENT BOARD:\n" %
