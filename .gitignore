@@ -3,3 +3,4 @@ src/datasets/**
 src/evaluator_data/**
 *.pkl
 src/__pycache__/**
+notebooks/.ipynb_checkpoints/**

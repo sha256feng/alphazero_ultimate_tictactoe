@@ -92,7 +92,7 @@ class board():
         x = self.old_move[0] % 3
         y = self.old_move[1] % 3
         for i in range(x*3, x*3+3):
-            for j in range(y*3, j*3+3):
+            for j in range(y*3, y*3+3):
                 if self.current_board[i,j] == ' ':
                     acts.append((i,j))
         if len(acts) == 0:
