@@ -90,7 +90,8 @@ class UCTNode():
     
     def expand(self, child_priors):
         self.is_expanded = True
-        action_idxs = self.game.actions(); c_p = child_priors
+        action_idxs = self.game.actions()
+        c_p = child_priors
         if action_idxs == []:
             self.is_expanded = False
         self.action_idxes = action_idxs
@@ -130,14 +131,18 @@ class DummyNode(object):
 def UCT_search(game_state, num_reads,net,temp):
     root = UCTNode(game_state, move=None, parent=DummyNode())
     for i in range(num_reads):
+        # selection
         leaf = root.select_leaf()
         encoded_s = ed.encode_board(leaf.game); encoded_s = encoded_s.transpose(2,0,1)
         encoded_s = torch.from_numpy(encoded_s).float().cuda()
         child_priors, value_estimate = net(encoded_s)
-        child_priors = child_priors.detach().cpu().numpy().reshape(-1); value_estimate = value_estimate.item()
+        child_priors = child_priors.detach().cpu().numpy().reshape(-1)
+        value_estimate = value_estimate.item()
         if leaf.game.check_winner() == True or leaf.game.actions() == []: # if somebody won or draw
             leaf.backup(value_estimate); continue
+        # expansion
         leaf.expand(child_priors) # need to make sure valid moves
+        # backup
         leaf.backup(value_estimate)
     return root
 
