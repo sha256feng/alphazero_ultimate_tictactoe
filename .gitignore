@@ -2,6 +2,6 @@ cc4_*.pth.tar
 src/datasets/**
 src/evaluator_data/**
 *.pkl
-src/notebooks/pics/**
+notebooks/pics/**
 src/__pycache__/**
 notebooks/.ipynb_checkpoints/**
