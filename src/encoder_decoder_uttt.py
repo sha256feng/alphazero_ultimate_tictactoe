@@ -24,6 +24,7 @@ def decode_board(encoded):
     decoded = np.zeros([9,9]).astype(str)
     decoded[decoded == "0.0"] = " "
     decoder_dict = {0:"O", 1:"X"}
+    old_move = (-1,-1)
     for row in range(9):
         for col in range(9):
             for k in range(2):
@@ -34,8 +35,5 @@ def decode_board(encoded):
     cboard = board()
     cboard.current_board = decoded
     cboard.player = encoded[0,0,2]
-    if old_move:
-        cboard.old_move = old_move
-    else:
-        cboard.old_move = (-1,-1)
+    cboard.old_move = old_move
     return cboard
