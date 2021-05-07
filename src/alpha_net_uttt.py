@@ -24,11 +24,11 @@ class ConvBlock(nn.Module):
     def __init__(self):
         super(ConvBlock, self).__init__()
         self.action_size = 81
-        self.conv1 = nn.Conv2d(3, 128, 3, stride=1, padding=1)
+        self.conv1 = nn.Conv2d(4, 128, 3, stride=1, padding=1)
         self.bn1 = nn.BatchNorm2d(128)
 
     def forward(self, s):
-        s = s.view(-1, 3, 9, 9)  # batch_size x channels x board_x x board_y
+        s = s.view(-1, 4, 9, 9)  # batch_size x channels x board_x x board_y
         s = F.relu(self.bn1(self.conv1(s)))
         return s
 
@@ -55,9 +55,9 @@ class ResBlock(nn.Module):
 class OutBlock(nn.Module):
     def __init__(self):
         super(OutBlock, self).__init__()
-        self.conv = nn.Conv2d(128, 3, kernel_size=1) # value head
-        self.bn = nn.BatchNorm2d(3)
-        self.fc1 = nn.Linear(3*9*9, 32)
+        self.conv = nn.Conv2d(128, 4, kernel_size=1) # value head
+        self.bn = nn.BatchNorm2d(4)
+        self.fc1 = nn.Linear(4*9*9, 32)
         self.fc2 = nn.Linear(32, 1)
         
         self.conv1 = nn.Conv2d(128, 32, kernel_size=1) # policy head
@@ -67,7 +67,7 @@ class OutBlock(nn.Module):
     
     def forward(self,s):
         v = F.relu(self.bn(self.conv(s))) # value head
-        v = v.view(-1, 3*9*9)  # batch_size X channel X height X width
+        v = v.view(-1, 4*9*9)  # batch_size X channel X height X width
         v = F.relu(self.fc1(v))
         v = torch.tanh(self.fc2(v))
         

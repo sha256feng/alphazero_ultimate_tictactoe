@@ -198,7 +198,7 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.arange(81), \
                                                     p = policy)) # decode move and move piece(s)
-            dataset.append([board_state,policy])
+            dataset.append([board_state, policy])
             print("[Iteration: %d CPU: %d]: Game %d CURRENT BOARD:\n" %
                   (iteration, cpu, idxx), current_board.current_board,current_board.player)
             print(" ")
