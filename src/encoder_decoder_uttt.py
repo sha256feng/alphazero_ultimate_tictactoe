@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
-from connect_board import board
+from utictactoe_board import board
 
 def encode_board(board):
     board_state = board.current_board
