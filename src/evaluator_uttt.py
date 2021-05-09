@@ -74,12 +74,15 @@ class arena():
         dataset.append(ed.encode_board(current_board))
         if value == -1:
             dataset.append(f"{b} as black wins")
+            print(f"{b} as black wins")
             return b, dataset
         elif value == 1:
             dataset.append(f"{w} as white wins")
+            print(f"{w} as white wins")
             return w, dataset
         else:
             dataset.append("Nobody wins")
+            print("Nobody wins")
             return None, dataset
     
     def evaluate(self, num_games, cpu):
