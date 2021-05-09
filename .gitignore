@@ -5,3 +5,4 @@ src/evaluator_data/**
 notebooks/pics/**
 src/__pycache__/**
 notebooks/.ipynb_checkpoints/**
+src/model_data/**
