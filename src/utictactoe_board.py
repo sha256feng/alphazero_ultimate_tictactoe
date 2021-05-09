@@ -91,7 +91,7 @@ class board():
                         whole_blank_cells.append((i,j))
             return whole_blank_cells
 
-        if x != -1:
+        if self.old_move[0] != -1:
             x = self.old_move[0] % 3
             y = self.old_move[1] % 3
             for i in range(x*3, x*3+3):
