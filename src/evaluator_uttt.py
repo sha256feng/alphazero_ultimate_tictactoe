@@ -49,10 +49,10 @@ class arena():
             dataset.append(copy.deepcopy(ed.encode_board(current_board)))
             print(""); print(current_board.current_board)
             if current_board.player == 0:
-                root = UCT_search(current_board,777,white,t)
+                root = UCT_search(current_board,100,white,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "white = %s" %(str(w)))
             elif current_board.player == 1:
-                root = UCT_search(current_board,777,black,t)
+                root = UCT_search(current_board,100,black,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "black = %s" %(str(b)))
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.arange(81), \
