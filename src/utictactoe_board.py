@@ -87,7 +87,7 @@ class board():
             whole_blank_cells = []
             for i in range(9):
                 for j in range(9):
-                    if self.current_board[i,j] != ' ':
+                    if self.current_board[i,j] == ' ':
                         whole_blank_cells.append((i,j))
             return whole_blank_cells
 
