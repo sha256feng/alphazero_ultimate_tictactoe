@@ -6,7 +6,7 @@ Created on Thu Jul  4 11:01:30 2019
 """
 from MCTS_uttt import run_MCTS
 from train_uttt import train_connectnet
-from evaluator_c4 import evaluate_nets
+from evaluator_uttt import evaluate_nets
 from argparse import ArgumentParser
 import logging
 
