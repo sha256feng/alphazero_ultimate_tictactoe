@@ -90,13 +90,16 @@ class board():
                     if self.current_board[i,j] != '-':
                         whole_blank_cells.append((i,j))
             return whole_blank_cells
-        
-        x = self.old_move[0] % 3
-        y = self.old_move[1] % 3
-        for i in range(x*3, x*3+3):
-            for j in range(y*3, y*3+3):
-                if self.current_board[i,j] == ' ':
-                    acts.append((i,j))
-        if len(acts) == 0:
-            acts = _whole_blank_cell(self)
+
+        if x != -1:
+            x = self.old_move[0] % 3
+            y = self.old_move[1] % 3
+            for i in range(x*3, x*3+3):
+                for j in range(y*3, y*3+3):
+                    if self.current_board[i,j] == ' ':
+                        acts.append((i,j))
+            if len(acts) == 0:
+                acts = _whole_blank_cell(self)
+        else:
+            acts = _whole_blank_cell()
         return acts
