@@ -102,7 +102,8 @@ def fork_process(arena_obj, num_games, cpu): # make arena picklable
 
 def evaluate_nets(args, iteration_1, iteration_2) :
     logger.info("Loading nets...")
-    current_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_2); best_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_1)
+    current_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_2)
+    best_net="%s_iter%d.pth.tar" % (args.neural_net_name, iteration_1)
     current_net_filename = os.path.join("./model_data/",\
                                     current_net)
     best_net_filename = os.path.join("./model_data/",\
@@ -167,7 +168,7 @@ def evaluate_nets(args, iteration_1, iteration_2) :
         arena1.evaluate(num_games=args.num_evaluator_games, cpu=0)
         
         stats = load_pickle("wins_cpu_%i" % (0))
-        if stats.best_win_ratio >= 0.55:
+        if stats['best_win_ratio'] >= 0.55:
             return iteration_2
         else:
             return iteration_1
