@@ -206,6 +206,7 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             print(f"Prev move: {current_board.old_move}")
             print("[Iteration: %d CPU: %d]: Game %d CURRENT MEGA BOARD:\n" %
                   (iteration, cpu, idxx), current_board.mega_board,current_board.player)
+            print(f"Board avail actions {current_board.actions()}\n")
             if winner == True: # if somebody won
                 if current_board.player == 0: # black wins
                     value = -1
