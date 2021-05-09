@@ -101,5 +101,5 @@ class board():
             if len(acts) == 0:
                 acts = _whole_blank_cell(self)
         else:
-            acts = _whole_blank_cell()
+            acts = _whole_blank_cell(self)
         return acts
