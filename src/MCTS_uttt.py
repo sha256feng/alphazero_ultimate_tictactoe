@@ -202,12 +202,16 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
             print("[Iteration: %d CPU: %d]: Game %d CURRENT BOARD:\n" %
                   (iteration, cpu, idxx), current_board.current_board,current_board.player)
             print(" ")
-            if current_board.check_winner() == True: # if somebody won
+            winner = current_board.check_winner()
+            if winner == True: # if somebody won
                 if current_board.player == 0: # black wins
                     value = -1
                 elif current_board.player == 1: # white wins
                     value = 1
                 checkmate = True
+            elif winner == 'tie':
+                value = 0
+                checkmate = 0
             move_count += 1
         dataset_p = []
         for idx,data in enumerate(dataset):
