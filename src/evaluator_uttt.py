@@ -57,7 +57,11 @@ class arena():
             current_board = do_decode_n_move_pieces(current_board,\
                                                     np.random.choice(np.arange(81), \
                                                                      p = policy)) # decode move and move piece(s)
+            print("Game CURRENT BOARD:\n" , current_board.current_board,current_board.player)
+            print(" ")
             winner = current_board.check_winner()
+            print(f"Board avail actions {current_board.actions()}\n")
+            print("Game MEGA BOARD:\n", current_board.mega_board, current_board.player)
             if winner == True: # someone wins
                 if current_board.player == 0: # black wins
                     value = -1
