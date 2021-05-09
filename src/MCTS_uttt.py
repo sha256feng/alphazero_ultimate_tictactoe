@@ -211,7 +211,7 @@ def MCTS_self_play(connectnet, num_games, start_idx, cpu, args, iteration):
                 checkmate = True
             elif winner == 'tie':
                 value = 0
-                checkmate = 0
+                checkmate = True
             move_count += 1
         dataset_p = []
         for idx,data in enumerate(dataset):
