@@ -55,13 +55,17 @@ class arena():
                 root = UCT_search(current_board,777,black,t)
                 policy = get_policy(root, t); print("Policy: ", policy, "black = %s" %(str(b)))
             current_board = do_decode_n_move_pieces(current_board,\
-                                                    np.random.choice(np.array([0,1,2,3,4,5,6]), \
+                                                    np.random.choice(np.arange(81), \
                                                                      p = policy)) # decode move and move piece(s)
-            if current_board.check_winner() == True: # someone wins
+            winner = current_board.check_winner()
+            if winner == True: # someone wins
                 if current_board.player == 0: # black wins
                     value = -1
                 elif current_board.player == 1: # white wins
                     value = 1
+                checkmate = True
+            elif winner == 'tie':
+                value = 0
                 checkmate = True
         dataset.append(ed.encode_board(current_board))
         if value == -1:
